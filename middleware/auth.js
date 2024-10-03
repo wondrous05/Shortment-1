@@ -45,9 +45,18 @@ const adminMiddleware = async (req, res, next) => {
   next();
 };
 
+
+const guestMiddleware = async (req, res, next) => {
+  if (req.user.role !== "guest") {
+    return res.status(400).json({ message: "ONLY GUEST CAN USE THIS ROUTES" });
+  }
+  next();
+};
+
 module.exports =  {
   authenticate,
   hostMiddleware,
   userMiddleware,
-  adminMiddleware
+  adminMiddleware,
+  guestMiddleware
 };
