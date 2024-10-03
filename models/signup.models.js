@@ -23,7 +23,7 @@ const signupSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  recapcha: {
+  recaptcha: {
     type: String,
     required: true
   },
