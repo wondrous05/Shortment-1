@@ -10,15 +10,15 @@ const cloudinary = require("../utils/cloudinary")
 const userSignup =  async (req, res) => {
   const {profileName, email, password, confirmPassword, phoneNumber, recaptcha} = req.body
   try { 
-    if (!recaptcha) {
-      return res.status(400).json({ message: "🔥 Please complete the reCAPTCHA" });
-    }
+    // if (!recaptcha) {
+    //   return res.status(400).json({ message: "🔥 Please complete the reCAPTCHA" });
+    // }
 
-    const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REP_SECRET_KEY}&response=${recaptcha}`);
+    // const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REP_SECRET_KEY}&response=${recaptcha}`);
 
-    if (!response.data.success) {
-      return res.status(400).json({ message: "🔥 reCAPTCHA verification failed" });
-    }
+    // if (!response.data.success) {
+    //   return res.status(400).json({ message: "🔥 reCAPTCHA verification failed" });
+    // }
 
     if(!profileName && !email && !password && !phoneNumber && !confirmPassword){
       return res.status(400).json({message: " 🔥 PLEASE FILL THIS FIELD"})
