@@ -187,10 +187,21 @@ const uploadProfilePicture = async (req, res) => {
   }
 };
 
+const findAllUsers = async (req, res) => {
+  try {
+    const users = await signupModel.find({});
+    res.status(200).json({ users });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: " INTERNAL SERVER ERROR", error: error.message });
+  }
+}
+
 module.exports = {
   userSignup,
   userLogin,
   forgotPassword,
   resetPassword,
-  uploadProfilePicture
+  uploadProfilePicture,
+  findAllUsers
 }

@@ -112,6 +112,8 @@ const rejectProperty = async (req, res) => {
 };
 
 
+
+
 module.exports = {
   getAllHosts,
   getAllGuests,

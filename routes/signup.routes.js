@@ -9,7 +9,8 @@ const {
   userLogin,
   forgotPassword,
   resetPassword,
-  uploadProfilePicture
+  uploadProfilePicture,
+  findAllUsers
 } = require("../controllers/signup.controllers")
 
 
@@ -18,5 +19,6 @@ router.post("/signin", userLogin )
 router.post("/forgotpassword", authenticate, forgotPassword)
 router.post('/reset-password', authenticate, resetPassword);
 router.post('/profile-picture', upload.single("profilePicture"), uploadProfilePicture);
+router.get('/fetchusers',findAllUsers )
 
 module.exports = router
