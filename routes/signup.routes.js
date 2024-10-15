@@ -17,7 +17,7 @@ const {
 router.post("/signup", userSignup)
 router.post("/signin", userLogin )
 router.post("/forgotpassword", forgotPassword)
-router.post('/reset-password', authenticate, resetPassword);
+router.post('/reset-password',g resetPassword);
 router.post('/profile-picture', upload.single("profilePicture"), uploadProfilePicture);
 router.get('/fetchusers',findAllUsers )
 
