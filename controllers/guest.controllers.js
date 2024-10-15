@@ -40,11 +40,24 @@ try {
     const { location, description } = req.query;
     
 
-    const searchResult = await Property.findOne({location: location, description: description, beds: beds })
+    const newSearch = {}
 
-    if (!property){
+  
+    if (location) {
+      newSearch.location = { $regex: new RegExp(location, 'i') };
+    }
+
+    if (description) {
+      newSearch.description = { $regex: new RegExp(description, 'i') };
+    }
+
+    const searchResult = await Property.find({newSearch})
+
+    if (!searchResult) {
         return res.status(404).json({ message: 'property not found'})
     }
+
+    return res.status(200).json({ message: 'property found', searchResult});
 } catch (error) {
     return res.status(500).json('internal sever error')
 }
@@ -56,7 +69,7 @@ try {
 const booking =  async (req, res) => {
   
   try {
-    const { guestId, hostId, checkInDate, checkOutDate } = req.body;
+    const { guestId, hostName, checkInDate, checkOutDate, Status, } = req.body;
 
     
     if (!guestId || !hostId || !checkInDate || !checkOutDate) {
@@ -64,10 +77,10 @@ const booking =  async (req, res) => {
     }
   
     
-    if (!apartments[apartmentId]) {
+    if (!apartments) {
       return res.status(404).json({ message: 'Apartment not found' });
     }
-  
+    
     
     const isBooked = hostId.bookings.some(booking => {
       const existingCheckIn = new Date(booking.checkInDate);

@@ -25,8 +25,7 @@ const bookingSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['checkin', 'checkout'],
-    default: 'checkin'
+    enum: ['checkin', 'checkout']
   },
   checkInDate: {
     type: Date,
@@ -37,7 +36,7 @@ const bookingSchema = new mongoose.Schema({
     required: true
   },
   price: {
-    type: Number,
+    type: mongoose.Decimal128,
     required: true
   },
   bookingDate: {
