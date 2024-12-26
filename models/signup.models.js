@@ -32,6 +32,10 @@ const signupSchema = new mongoose.Schema({
   profilePicture: {
     type: String,
     default: ""
+  },
+  otp: {
+    type: String,
+    default: ""
   }
 }, {
   timestamps: true,
